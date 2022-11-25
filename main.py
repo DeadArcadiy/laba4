@@ -83,6 +83,10 @@ def circle(x1,y1,x2,y2):
 def submit(text):
     coor = list(map(int, text.split()))
     if (len(coor) == 4):
+        ax1.clear()
+        ax2.clear()
+        ax3.clear()
+        ax4.clear()
         point_x, point_y = brezen(coor[0], coor[1], coor[2], coor[3])
         ax1.plot(point_x, point_y, '*')
         x, y = circle(coor[0], coor[1], coor[2], coor[3])
@@ -91,6 +95,7 @@ def submit(text):
         ax3.plot(dx,dy,'.')
         sx,sy = step(coor[0], coor[1], coor[2], coor[3])
         ax4.plot(sx,sy,'+')
+        grid()
         plt.draw()
 
 def dda(x1,y1,x2,y2):
@@ -137,6 +142,53 @@ def step(x1,y1,x2,y2):
         xx += 1
     return x, y
 
+def grid():
+    ax1.set_title("Brezenhem line")
+    ax2.set_title('Brezenhem circle')
+    ax3.set_title('DDA algoritm')
+    ax4.set_title('Step algoritm')
+    ax1.grid()
+    ax1.minorticks_on()
+    ax2.grid()
+    ax2.minorticks_on()
+    ax3.grid()
+    ax3.minorticks_on()
+    ax4.grid()
+    ax4.minorticks_on()
+    ax1.grid(which='major',
+        color = 'k', 
+        linewidth = 0.1)
+    ax1.grid(which='minor',
+        color = 'k', 
+        linewidth = 0.1)
+    ax2.grid(which='major',
+        color = 'k', 
+        linewidth = 0.1)
+    ax2.grid(which='minor',
+        color = 'k', 
+        linewidth = 0.1)
+    ax3.grid(which='major',
+        color = 'k', 
+        linewidth = 0.1)
+    ax3.grid(which='minor',
+        color = 'k', 
+        linewidth = 0.1)
+    ax4.grid(which='major',
+        color = 'k', 
+        linewidth = 0.1)
+    ax4.grid(which='minor',
+        color = 'k', 
+        linewidth = 0.1)
+    ax1.set_ylabel("y",labelpad=1,loc='bottom')
+    ax1.set_xlabel("x",labelpad=1,loc = 'left')
+    ax2.set_ylabel("y",labelpad=1,loc='bottom')
+    ax2.set_xlabel("x",labelpad=1,loc = 'left')
+    ax3.set_ylabel("y",labelpad=1,loc='bottom')
+    ax3.set_xlabel("x",labelpad=1,loc = 'left')
+    ax4.set_ylabel("y",labelpad=1,loc='bottom')
+    ax4.set_xlabel("x",labelpad=1,loc = 'left')
+
+
 if __name__ == "__main__":
     fig = plt.figure()
     ax1 = fig.add_subplot(221)
@@ -144,10 +196,6 @@ if __name__ == "__main__":
     ax3 = fig.add_subplot(223)
     ax4 = fig.add_subplot(224)
     ax = fig.add_axes([0.1, 0, 0.8, 0.05])
-    ax1.title.set_text("Brezenhem line")
-    ax2.title.set_text('Brezenhem circle')
-    ax3.title.set_text('DDA algoritm')
-    ax4.title.set_text('Step algoritm')
     x = [10, 1]
     y = [1, 10]    
     point_x, point_y = brezen(x[0], x[1], y[0], y[1])
@@ -158,7 +206,7 @@ if __name__ == "__main__":
     ax3.plot(dx,dy,'.')
     sx,sy = step(x[0], x[1], y[0], y[1])
     ax4.plot(sx,sy,'+')
-    
+    grid()
     text_box = TextBox(ax, "Input", initial="10 1 1 10")
     text_box.on_submit(submit)
     plt.show()
