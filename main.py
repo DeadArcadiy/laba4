@@ -88,13 +88,16 @@ def submit(text):
         ax3.clear()
         ax4.clear()
         point_x, point_y = brezen(coor[0], coor[1], coor[2], coor[3])
-        ax1.plot(point_x, point_y, '*')
+        ax1.plot(point_x, point_y, '-')
+        ax1.plot(point_x, point_y, '.')
         x, y = circle(coor[0], coor[1], coor[2], coor[3])
         ax2.plot(x, y, '.')
         dx,dy = dda(coor[0], coor[1], coor[2], coor[3])
+        ax3.plot(dx,dy,'-')
         ax3.plot(dx,dy,'.')
         sx,sy = step(coor[0], coor[1], coor[2], coor[3])
-        ax4.plot(sx,sy,'+')
+        ax4.plot(sx,sy,'-')
+        ax4.plot(sx,sy,'.')
         grid()
         plt.draw()
 
@@ -199,13 +202,19 @@ if __name__ == "__main__":
     x = [10, 1]
     y = [1, 10]    
     point_x, point_y = brezen(x[0], x[1], y[0], y[1])
-    ax1.plot(point_x, point_y, '*')
+    ax1.plot(point_x, point_y, '-')
+    ax1.plot(point_x, point_y, '.')
+    
     cx, cy = circle(x[0], x[1], y[0], y[1])
     ax2.plot(cx, cy, '.')
     dx,dy = dda(x[0], x[1], y[0], y[1])
+    ax3.plot(dx,dy,'-')
     ax3.plot(dx,dy,'.')
+    
     sx,sy = step(x[0], x[1], y[0], y[1])
-    ax4.plot(sx,sy,'+')
+    ax4.plot(sx,sy,'-')
+    ax4.plot(sx,sy,'.')
+    
     grid()
     text_box = TextBox(ax, "Input", initial="10 1 1 10")
     text_box.on_submit(submit)
